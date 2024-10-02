@@ -199,6 +199,35 @@ public class Ejercicios {
             }
         }
     }
+        public void practica3(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Como te llamas: ");
+        String nombre = entrada.next();
+
+        int edad = -1;
+        int edad2 = 18;
+        int resultado = edad2 - edad;
+
+        while (edad < 0){
+            try {
+                System.out.println("Hola " + nombre+ ". Introduce tu edad: ");
+               edad = entrada.nextInt();
+
+
+            }catch (InputMismatchException er){
+                System.out.println("ERROR. Introduce de nuevo la edad: ");
+                entrada.nextLine();
+
+            }
+        }
+
+        if (edad2>edad){
+            System.out.println("Lo siento " + nombre+ ". No puedes votar. Te faltan " + resultado+ " años para ser mayor de edad");
+        }else if (edad2<=edad){
+            System.out.println("Enhorabuena " + nombre+ ". Puedes votar.");
+        }
+
+        }
 }
 
 
