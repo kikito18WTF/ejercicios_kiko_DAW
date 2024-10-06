@@ -231,40 +231,56 @@ public class Ejercicios {
 
         public void practica4() {
 
-            int num1 = 367;
-            int num2 = 251;
+            Scanner entrada = new Scanner(System.in);
+                    int num1 = 0;
+                    int num2 = 0;
+                    boolean entradaValida = false;
 
-            String num2C = Integer.toString(num2);
+                    while (!entradaValida) {
+                        try {
+                            System.out.print("Introduce el multiplicando (3 cifras): ");
+                            num1 = entrada.nextInt();
 
-            String num2_C1 = num2C.substring(0,1);
-            String num2_C2 = num2C.substring(1,2);
-            String num2_C3 = num2C.substring(2,3);
+                            System.out.print("Introduce el multiplicador (3 cifras): ");
+                            num2 = entrada.nextInt();
 
-            int num2_1 = Integer.parseInt(num2_C1);
-            int num2_2 = Integer.parseInt(num2_C2);
-            int num2_3 = Integer.parseInt(num2_C3);
+                            if (num1 <= 0 || num2 <= 0) {
+                                System.out.println("Error: Los números no pueden ser negativos ni cero. Inténtalo de nuevo.");
+                            } else {
+                                entradaValida = true;
+                            }
 
-            int resultado = num1 * num2;
-            int resultado1 = num2_1 * num1;
-            int resulato2 = num2_2 * num1;
-            int resultado3 = num2_3 * num1;
+                        } catch (InputMismatchException er) {
+                            System.out.println("Error: Debes introducir un número entero. Inténtalo de nuevo.");
+                            entrada.next();
+                        }
+                    }
 
-            System.out.println("Introduce el multiplicando (3 cifras): " + num1);
-            System.out.println("Introduce el multiplicador (3 cifras): " + num2);
+                    String num2C = Integer.toString(num2);
+                    String num2_C1 = num2C.substring(0, 1);
+                    String num2_C2 = num2C.substring(1, 2);
+                    String num2_C3 = num2C.substring(2, 3);
 
-            System.out.println("El producto de la multiplicacion es : " + resultado);
+                    int num2_1 = Integer.parseInt(num2_C1);
+                    int num2_2 = Integer.parseInt(num2_C2);
+                    int num2_3 = Integer.parseInt(num2_C3);
 
-            System.out.println("El proceso es:");
-            System.out.println(" "+ num1);
-            System.out.println("x "+num2 );
-            System.out.println("--------");
-            System.out.println(resultado3);
-          System.out.println(resulato2 +"x");
-            System.out.println(resultado1 +"xx");
-            System.out.println("--------");
-            System.out.println(resultado);
+                    int resultado = num1 * num2;
+                    int resultado1 = num2_1 * num1;
+                    int resultado2 = num2_2 * num1;
+                    int resultado3 = num2_3 * num1;
 
-        }
+                    System.out.println("El producto de la multiplicación es: " + resultado);
+                    System.out.println("El proceso es:");
+                    System.out.println(" " + num1);
+                    System.out.println("x " + num2);
+                    System.out.println("--------");
+                    System.out.println(resultado3);
+                    System.out.println(resultado2 + "x");
+                    System.out.println(resultado1 + "xx");
+                    System.out.println("--------");
+                    System.out.println(resultado);
+                }
 }
 
 
