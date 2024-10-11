@@ -281,6 +281,189 @@ public class Ejercicios {
                     System.out.println("--------");
                     System.out.println(resultado);
                 }
+
+    public void caracteres() {
+
+        String frase = "No me porto mal en clase y no lo reconozco. ";
+
+        int tamnayo = frase.length();
+
+        System.out.println("El tamaño de la frase es " + tamnayo);
+
+        char letra = frase.charAt(33);
+        System.out.println("La letra en la posicion 33 es " + letra);
+
+        String palabra = frase.substring(9,12);
+        System.out.println("La palabra con substring es "+ palabra);
+
+        String palabra2 = "Parte. ";
+        String concatenacion = frase.concat(palabra2);
+            System.out.println(" La concatenacion de la frase con la palabra " + palabra2 + " es " + concatenacion);
+
+           int posicion = concatenacion.indexOf(palabra2);
+            System.out.println("La palabra  " + palabra2+ "esta en la posicion " + posicion);
+
+            int posicion2 = concatenacion.indexOf("no",  8);
+            System.out.println(" La posicion de la palabra no si no tenemos en cuenta la 8 primeras posiciones es " +posicion2  );
+
+            int posicion3 = concatenacion.lastIndexOf("no");
+            System.out.println(" =La posicion de la ultima aparacion de la palabra no es "+ posicion3 );
+
+            String mayusculas = frase.toUpperCase();
+            String minuscuñlsa = frase.toLowerCase();
+            System.out.println(mayusculas + minuscuñlsa );
+
+            String nombre = "Patricia               ";
+             nombre = nombre.trim();
+            System.out.println(" Tu nombre sin espacios es " +nombre );
+
+            String remplazar = frase.replace("mal", "bien");
+            System.out.println( remplazar);
+
+            String palabra3 = "hola";
+            String palabra4 = "HOLA";
+
+            if (palabra3.equals(palabra4)==true){
+
+                System.out.printf("Son iguales");
+
+            }else {
+                System.out.printf("Son distintos");
+            }
+
+            String palabra5 = "hola";
+            String palabra6 = "HOLA";
+
+            if (palabra5.equalsIgnoreCase(palabra6)==true){
+
+                System.out.printf("Son iguales");
+
+            }else {
+                System.out.printf("Son distintos");
+            }
+
+
+
+        }
+
+        public void ejer1und4(){
+
+        String frase = "Prueba ejercicios caracteres";
+
+        int longitud = frase.length();
+
+            System.out.println("La longitud de la frase es "+ longitud);
+
+            String remplazar = frase.replace(" " , "");
+            System.out.println(remplazar);
+
+            String mitad1 = frase.substring(0,13);
+            String mitad2 = frase.substring(14,28);
+            System.out.println("La primera mitad de texto es " + mitad1 + " y la segunda mitad es " + mitad2);
+
+            String mayus = frase.toUpperCase();
+            System.out.println(mayus);
+
+
+        }
+
+        public void ejer2und4() {
+
+
+         String comida1 = "magadalena";
+         String comida2 = "galletas";
+
+         int palabra = comida1.length();
+            System.out.println("La palabra magdalena tiene " + palabra+ " caracteres");
+         int palabra2 = comida2.length();
+            System.out.println("La palabra galletas tiene " + palabra2+ " caracteres");
+
+
+            if (comida1.equals(comida2)==true){
+
+                System.out.println("Son iguales");
+
+            }else {
+                System.out.println("Son distintos");
+            }
+
+            if (palabra>palabra2){
+                System.out.println("La palabra "+ comida1 + " tiene mas caracteres que la palabra "+ comida2);
+            }else {
+                System.out.println("La palabra "+ comida2 + " tiene mas caracteres que la palabra "+ comida1);
+            }
+
+
+
+        }
+
+        public void ejer3und4(){
+
+
+            Scanner entrada = new Scanner(System.in);
+
+            boolean err = true;
+            int n= 0;
+            int m = 0;
+
+
+            while (err) {
+
+                try {
+
+                    System.out.println("Introduce un numero:");
+                     n = entrada.nextInt();
+
+
+                    System.out.println("Introduce otro numero para quitar las ciras al anterior:");
+
+                     m = entrada.nextInt();
+
+                     if (n>m){
+                         err=false;
+                     }else{
+                         System.out.println("No se pueden quitar mas cifras de las que hay");
+                     }
+
+                } catch (InputMismatchException e) {
+                    System.out.println("El formato no es el correcto");
+                    entrada.nextLine();
+                }
+            }
+
+            String n_string = Integer.toString(n);
+
+            int tamanyo = n_string.length();
+
+            n_string = n_string.substring(0, tamanyo-m);
+
+            System.out.println("El numero sin las" + m+ "cifras es "+ n_string);
+
+
+        }
+
+        public void ejer4und4(){
+
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Introduce una frase: ");
+        String frase = entrada.nextLine();
+
+        frase = " " + frase + " ";
+        frase = frase.replace("." , " ");
+        frase = frase.toLowerCase();
+        System.out.println("Introduce una subcadena: ");
+        String subcadena = entrada.nextLine();
+        subcadena = " " + subcadena + " ";
+
+
+        int fraselength = frase.length();
+
+        int frasesinsubcadena = frase.replace(subcadena, "").length();
+
+        int division = (fraselength - frasesinsubcadena) / subcadena.length();
+            System.out.println(division);
+        }
 }
 
 
