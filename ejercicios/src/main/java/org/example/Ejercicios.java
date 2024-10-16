@@ -543,6 +543,50 @@ public class Ejercicios {
 
 
         }
+
+     public void numerodelasuerte () {
+
+            Scanner entrada = new Scanner(System.in);
+
+            try {
+                System.out.println("Introduce tu fecha de nacimiento (dd/mm/aaaa): ");
+                String fecha = entrada.nextLine();
+
+
+                if (fecha.length() != 10 || fecha.charAt(2) != '/' || fecha.charAt(5) != '/') {
+                    System.out.println("Formato de fecha incorrecto. Usa dd/mm/aaaa.");
+                } else {
+                    try {
+                        int dia = Integer.parseInt(fecha.substring(0, 2));
+                        int mes = Integer.parseInt(fecha.substring(3, 5));
+                        int anio = Integer.parseInt(fecha.substring(6, 10));
+
+
+                        int sumaTotal = dia + mes + anio;
+                        System.out.print(dia + " + " + mes + " + " + anio + " = " + sumaTotal + "\n");
+
+
+                        int numeroDeLaSuerte = sumaTotal;
+                        int sumaCifras = 0;
+
+
+                        while (numeroDeLaSuerte > 0) {
+                            sumaCifras += numeroDeLaSuerte % 10;
+                            numeroDeLaSuerte /= 10;
+                        }
+
+                        System.out.print("Sumando las cifras de " + sumaTotal + ": ");
+                        System.out.print(sumaTotal + " = ");
+                        System.out.println(sumaCifras);
+                        System.out.println("Número de la suerte: " + sumaCifras);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error al convertir los valores. Asegúrate de que la fecha esté en el formato correcto.");
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error en la entrada. Por favor, ingresa la fecha correctamente.");
+            }
+        }
 }
 
 
