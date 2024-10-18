@@ -659,6 +659,81 @@ public class Ejercicios {
         }
 
     }
+
+     public void bucles1 (){
+
+        Scanner entrada = new Scanner(System.in);
+
+        String psw = "entornos";
+        String psw_ususario;
+        do {
+            System.out.println("Introduce tu contraseña: ");
+            psw_ususario = entrada.next();
+
+        }while (!psw_ususario.equals(psw));
+
+        System.out.println("BIENVENIDO LUCAS");
+
+    }
+
+    public void bucles2 (){
+
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Introduce un numero");
+
+        int numero = entrada.nextInt();
+
+        for (int j=numero ;j>=1;j--){
+
+            if (j%2==0){
+                System.out.println(j);
+        }
+
+        }
+
+    }
+
+    public void bucles3 (){
+
+      for (int i= 1 ; i <=50; i++ ){
+
+          if (i%3==0){
+              System.out.println(i + " ");
+          }
+      }
+
+    }
+
+        public void bucles4 (){
+
+        Scanner entrada = new Scanner(System.in);
+
+            System.out.println("Introduce una palabra");
+        String palabra = entrada.nextLine();
+
+        for (int i=0 ; i <palabra.length(); i++){
+            System.out.println(palabra.charAt(i));
+        }
+
+
+        }
+        public void bucles5 (){
+
+        Scanner entrada = new Scanner(System.in);
+
+            System.out.println("Introduce un numero");
+
+            int numero = entrada.nextInt();
+
+            for (int i=1 ; i <=10 ; i++ ){
+
+                int resultado = numero * i;
+                System.out.println(resultado);
+            }
+
+
+        }
 }
 
 
