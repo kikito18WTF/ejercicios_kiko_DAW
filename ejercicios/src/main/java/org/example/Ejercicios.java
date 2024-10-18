@@ -587,6 +587,78 @@ public class Ejercicios {
                 System.out.println("Error en la entrada. Por favor, ingresa la fecha correctamente.");
             }
         }
+     public void calculadora (){
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Bienvenido a tu calculadora");
+
+        try {
+
+            System.out.print("Ingrese el primer operando (int): ");
+            int operando1 = entrada.nextInt();
+
+
+            System.out.print("Ingrese el signo de la operación (+, -, /, x, R): ");
+            String operador = entrada.next();
+
+
+            int operando2 = 0;
+
+
+            if (!operador.equalsIgnoreCase("R")) {
+                System.out.print("Ingrese el segundo operando (int): ");
+                operando2 = entrada.nextInt();
+            }
+
+
+            double resultado = 0;
+            boolean operacionValida = true;
+
+
+            switch (operador) {
+                case "+":
+                    resultado = operando1 + operando2;
+                    break;
+                case "-":
+                    resultado = operando1 - operando2;
+                    break;
+                case "/":
+                    if (operando2 == 0) {
+                        System.out.println("Error: No se puede dividir entre cero.");
+                        operacionValida = false;
+                    } else {
+                        resultado = (double) operando1 / operando2;
+                    }
+                    break;
+                case "x":
+                    resultado = operando1 * operando2;
+                    break;
+                case "R":
+                    if (operando1 < 0) {
+                        System.out.println("Error: No se puede calcular la raíz cuadrada de un número negativo.");
+                        operacionValida = false;
+                    } else {
+
+                        double raizCuadrada = operando1 / 2;
+                        System.out.println("Aproximación de la raíz cuadrada de " + operando1 + " es: " + raizCuadrada);
+                        operacionValida = false;
+                    }
+                    break;
+                default:
+                    System.out.println("Error: Operador no válido.");
+                    operacionValida = false;
+                    break;
+            }
+
+
+            if (operacionValida) {
+                System.out.println("El resultado es: " + resultado);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: Entrada no válida. Por favor, asegúrese de ingresar números enteros.");
+        }
+
+    }
 }
 
 
