@@ -734,6 +734,115 @@ public class Ejercicios {
 
 
         }
+    public void isbn () {
+    Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Introduce un ISBN de 10 dígitos :");
+        String isbn = entrada.nextLine();
+
+        if (isbn.length() != 10) {
+            System.out.println("El ISBN " + isbn + " no es válido (debe tener 10 dígitos).");
+        } else {
+            try {
+                boolean error = false;
+
+                if (isbn.contains("?")) {
+                    int suma = 0;
+                    int multiplicador = 10;
+                    int posInterrogacion = -1;
+
+                    for (int i = 0; i < 9; i++) {
+                        char c = isbn.charAt(i);
+                        if (Character.isDigit(c)) {
+                            suma += (c - '0') * multiplicador;
+                        } else if (c == '?') {
+                            posInterrogacion = i;
+                        } else {
+                            System.out.println("El ISBN contiene caracteres inválidos.");
+                            error = true;
+                            break;
+                        }
+                        multiplicador--;
+                    }
+
+                    if (!error) {
+                        char ultimoChar = isbn.charAt(9);
+                        if (ultimoChar == 'X') {
+                            suma += 10;
+                        } else if (Character.isDigit(ultimoChar)) {
+                            suma += (ultimoChar - '0');
+                        } else if (ultimoChar == '?') {
+                            posInterrogacion = 9;
+                        } else {
+                            System.out.println("El último carácter del ISBN es inválido.");
+                            error = true;
+                        }
+
+                        if (!error) {
+                            boolean repaired = false;
+                            for (int i = 0; i <= 10; i++) {
+                                int sumaTemporal = suma;
+                                if (posInterrogacion < 9) {
+                                    sumaTemporal += i * (10 - posInterrogacion);
+                                } else {
+                                    sumaTemporal += i;
+                                }
+
+                                if (sumaTemporal % 11 == 0) {
+                                    System.out.println("El dígito faltante en el ISBN " + isbn + " es: " + i);
+                                    repaired = true;
+                                    break;
+                                }
+                            }
+
+                            if (!repaired) {
+                                System.out.println("No se pudo reparar el ISBN " + isbn + ".");
+                            }
+                        }
+                    }
+                } else {
+                    int suma = 0;
+                    int multiplicador = 10;
+                    boolean isbnValido = true;
+
+                    for (int i = 0; i < 9; i++) {
+                        char c = isbn.charAt(i);
+                        if (Character.isDigit(c)) {
+                            suma += (c - '0') * multiplicador;
+                            multiplicador--;
+                        } else {
+                            System.out.println("El ISBN contiene caracteres inválidos.");
+                            isbnValido = false;
+                            break;
+                        }
+                    }
+
+                    if (isbnValido) {
+                        char ultimoChar = isbn.charAt(9);
+                        if (ultimoChar == 'X') {
+                            suma += 10;
+                        } else if (Character.isDigit(ultimoChar)) {
+                            suma += (ultimoChar - '0');
+                        } else {
+                            System.out.println("El último carácter del ISBN es inválido.");
+                            isbnValido = false;
+                        }
+
+                        if (isbnValido && suma % 11 == 0) {
+                            System.out.println("El ISBN " + isbn + " es válido.");
+                        } else if (isbnValido) {
+                            System.out.println("El ISBN " + isbn + " no es válido.");
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+
+    
+    }
 }
 
 
