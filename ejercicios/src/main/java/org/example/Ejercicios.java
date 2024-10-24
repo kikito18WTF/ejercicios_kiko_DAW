@@ -843,6 +843,73 @@ public class Ejercicios {
 
     
     }
+
+      public void dados (){
+
+        Random aleatorio = new Random();
+
+        int dado1 = aleatorio.nextInt(6) + 1;
+        System.out.println("DADO 1:" + dado1);
+        int dado2 = aleatorio.nextInt(6) +1;
+        System.out.println("DADO2:" + dado2);
+        int resultado = dado1 + dado2;
+        System.out.println(resultado);
+
+        }
+
+        public void gencontra (){
+
+        Random aleatorio = new Random();
+        String contra = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        int longitud = 10;
+        String contra_generada = "";
+        for (int i=0 ; i < longitud ; i++){
+            int posiciom = aleatorio.nextInt(contra.length());
+            contra_generada += contra.charAt(posiciom);
+
+        }
+            System.out.println(contra_generada);
+
+
+        }
+
+        public void numrango (){
+
+        Scanner entrada = new Scanner(System.in);
+        Random aleatorio = new Random();
+        System.out.println("Cuantos numeros aleatorios quieres generar?");
+        int numero = entrada.nextInt();
+
+        System.out.println("Dime el rango minimo y maximo:");
+        int minnum = entrada.nextInt() ;
+        int maxnum = entrada.nextInt();
+
+        System.out.println("Los numeros generados son:");
+        for (int i=0 ; i < numero ; i++){
+            int numero_aleatorio = aleatorio.nextInt(maxnum -minnum + 1) + minnum ;
+            System.out.println(numero_aleatorio);
+        }
+
+
+
+        }
+
+        public void gencontra2 (){
+            Random aleatorio = new Random();
+            String contra = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            int longitud = aleatorio.nextInt(3) +6;
+            String contra_generada = "";
+            for (int i=0 ; i < longitud ; i++){
+                int posiciom = aleatorio.nextInt(contra.length());
+                contra_generada += contra.charAt(posiciom);
+
+            }
+
+            System.out.println(contra_generada);
+
+
+        }
 }
 
 
