@@ -910,7 +910,7 @@ public class Ejercicios {
 
 
         }
-    public class Repaso {
+
     public void repaso1(){
         Scanner entrada = new Scanner(System.in);
         int numinto = 0;
