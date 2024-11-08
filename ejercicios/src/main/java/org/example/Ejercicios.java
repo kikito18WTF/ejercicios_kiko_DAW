@@ -1135,6 +1135,287 @@ public class Ejercicios {
             }
         }
     }
+      public void vectores() {
+
+        int vector[];
+
+        vector = new int[7];
+
+        vector[2] = 7;
+        vector[5] = vector[2] + 4;
+
+
+        System.out.println(vector[2] + "" + vector[5]);
+
+        for (int i = 0; i <= vector.length - 1; i++) {
+            System.out.print(" " + vector[i] + ",");
+        }
+
+        String palabras[] = new String[3];
+        palabras[0] = "Pepe";
+
+        for (int i = 0; i < palabras.length; i++) {
+
+            System.out.print(" " + palabras[i] + " ");
+        }
+
+    }
+
+    public void vector1() {
+        Random aleatorio = new Random();
+
+        int numeros[] = new int[8];
+        int suma = 0;
+        for (int i = 0; i < numeros.length; i++) {
+
+            numeros[i] = aleatorio.nextInt(501);
+            suma += numeros[i];
+        }
+        System.out.println("la suma de los elementos es: " + suma);
+    }
+
+    public void vectores2() {
+
+        Scanner entrada = new Scanner(System.in);
+
+        int numeros[] = new int[5];
+
+        int ultimo = numeros[numeros.length - 1];
+        System.out.println("Introduce los numeros a invertir");
+        for (int i = 0; i < numeros.length; i++) {
+
+            numeros[i] = entrada.nextInt();
+
+        }
+
+        int tam_mitad = numeros.length / 2;
+        for (int i = 0; i < tam_mitad; i++) {
+
+            int cambio = numeros[i];
+            numeros[i] = numeros[numeros.length - 1 - i];
+            numeros[numeros.length - 1 - i] = cambio;
+        }
+
+//        for (int i = numeros.length-1;i>=0;i--){
+//            System.out.print(" " + numeros[i] + " ");
+//        }
+
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(" " + numeros[i] + " ");
+        }
+    }
+
+    public void vectores3() {
+
+        Scanner entrada = new Scanner(System.in);
+        Random aleatorios = new Random();
+
+        int numero[] = new int[25];
+
+        int numerointro = 0;
+        int numerocant = 0;
+
+
+        for (int i = 0; i < numero.length; i++) {
+
+            numero[i] = aleatorios.nextInt(101);
+
+
+        }
+
+        System.out.println("Introduce un numero para buscar [0,100]: ");
+
+        numerointro = entrada.nextInt();
+
+
+        for (int i = 0; i < numero.length; i++) {
+
+            if (numerointro == numero[i]) {
+                numerocant++;
+            }
+        }
+
+        System.out.println("El numero" + numerointro + "aparece " + numerocant + "veces");
+
+    }
+
+    public void vectores5() {
+        Scanner entrada = new Scanner(System.in);
+
+        int numeros[] = new int[5];
+        System.out.println("Introduce los numeros a invertir");
+        for (int i = 0; i < numeros.length; i++) {
+
+            numeros[i] = entrada.nextInt();
+
+        }
+
+        System.out.println("Array original:");
+        for (int num : numeros) {
+            System.out.print(num + " ");
+        }
+
+
+        int ultimo = numeros[numeros.length - 1];
+        for (int i = numeros.length - 1; i > 0; i--) {
+            if (i == 0) {
+                numeros[i] = ultimo;
+            } else {
+                numeros[i] = numeros[i - 1];
+            }
+        }
+        numeros[0] = ultimo;
+
+
+        System.out.println("Array rotado:");
+        for (int num : numeros) {
+            System.out.println(num + " ");
+        }
+    }
+
+    public void vectoresforeach() {
+
+        String palabras[] = {"Whisky", "Ginebra", "Vodka", "Ron"};
+
+        for (String i : palabras) { // se guarda el valor
+
+
+        }
+//copiar una palabra
+        String texto = Arrays.toString(palabras);
+        System.out.println("\n" + texto);
+
+        String palabras2[] = palabras;
+
+        palabras2[0] = "Francisco";
+
+        System.out.println(palabras);
+        System.out.println(palabras2);
+        System.out.println(Arrays.toString(palabras));
+        System.out.println(Arrays.toString(palabras2));
+
+        //clonar
+
+        String palabras3[] = palabras.clone();
+
+        palabras3[1] = "Marta";
+        System.out.println(palabras3);
+        System.out.println(Arrays.toString(palabras));
+        System.out.println(Arrays.toString(palabras2));
+
+        //copiar un trozo de array
+
+        String nombre_guays[] = new String[2];
+
+        System.arraycopy(palabras, 0, nombre_guays, 0, 2);
+
+        System.out.println(Arrays.toString(nombre_guays));
+    }
+
+    public void ejervect1() {
+
+        Random aleatorio = new Random();
+
+        int num[] = new int[8];
+
+        int suma = 0;
+
+        for (int i = 0; i < num.length; i++) {
+            num[i] = aleatorio.nextInt(501);
+            suma += num[i];
+        }
+        System.out.println("La suma de los elementos es: " + suma);
+
+    }
+
+    public void ejervect4() {
+        Scanner entrada = new Scanner(System.in);
+
+        int enterios[] = {4, 5, 6, 7, 8, 19, 30};
+
+        int enteros2[] = new int[enterios.length - 1];
+
+        System.out.println("Introduce una posicion a eliminar");
+
+        int eliminar = entrada.nextInt();
+
+        for (int i = 0; i < enterios.length - 1; i++) {
+
+            if (i < eliminar) {
+                enteros2[i] = enterios[i];
+            } else {
+                enteros2[i] = enterios[i + 1];
+            }
+        }
+        System.out.println(Arrays.toString(enterios));
+        System.out.println(Arrays.toString(enteros2));
+    }
+
+    public void vectores6 (){
+
+        Scanner entrada = new Scanner(System.in);
+
+        int num[] = new int[5];
+
+        System.out.println("Introduce 5 numeros: ");
+
+        for (int i = 0; i<num.length; i++){
+            num[i] = entrada.nextInt();
+        }
+
+        for (int i = 0; i< num.length/2 ;i++){
+          if (  num[i] != num[num.length-1-i]){
+              System.out.println("No es simetrico");
+              return;
+          }
+        }
+
+        System.out.println("Es simetrico");
+    }
+
+    public void vectores7 (){
+
+      int equipo1[] = {1,2,3};
+      int equipo2[] = {4,5,6};
+      int equipo3[] = new int[equipo1.length + equipo2.length];
+
+      for (int i=0; i<equipo1.length; i++){
+          equipo3[i] = equipo1[i];
+      }
+
+    for (int i= 0 ; i< equipo2.length; i++){
+        equipo3[equipo1.length +i] = equipo2[i];
+    }
+        System.out.println("Equipo final:");
+      for (int i=0 ; i< equipo3.length; i++){
+          System.out.println(equipo3[i] + "");
+      }
+    }
+
+    public void vectores8  (){
+        Scanner entrada = new Scanner(System.in);
+
+        int equipo1[] = {1,2,3,5};
+        int equpo11[] = new int[equipo1.length + 1];
+        int posicion = 3;
+        int nuevojugador = 4;
+
+        for (int i = 0; i < equipo1.length; i++) {
+            equpo11[i] = equipo1[i];
+        }
+
+        equpo11[posicion] = nuevojugador;
+
+        for (int i = posicion; i <equipo1.length ; i++) {
+
+            equpo11[i+1] = equipo1[i];
+        }
+
+        for (int jugador : equpo11){
+            System.out.println(jugador + "");
+        }
+
+    }
 }
 
 
