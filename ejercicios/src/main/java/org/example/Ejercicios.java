@@ -1416,6 +1416,84 @@ public class Ejercicios {
         }
 
     }
+
+    public void samurais () {
+        Scanner entrada = new Scanner(System.in);
+        Random aleatorio = new Random();
+
+        int[] equipo1 = new int[7];
+        int[] equipo2 = new int[7];
+        int potenciatotal;
+        for (int equipo = 1; equipo <= 2; equipo++) {
+            boolean potenciavalida = false;
+            while (!potenciavalida) {
+                potenciatotal = 0;
+                try {
+                    int[] equipoActual = (equipo == 1) ? equipo1 : equipo2;
+                    System.out.println("Equipo" + equipo + ". Introduce potencia de los samurais:");
+                    String intropoten = entrada.nextLine();
+                    String[] valores = intropoten.split(" ");
+
+                    if (valores.length != equipoActual.length) {
+                        System.out.println("ERROR. Tienes que introducir 7 valores");
+                        continue;
+                    }
+
+                    for (int i = 0; i < equipoActual.length; i++) {
+                        equipoActual[i] = Integer.parseInt(valores[i]);
+                        potenciatotal += equipoActual[i];
+                    }
+
+                    if (potenciatotal == 30) {
+                        System.out.println("Equipo" + equipo+ " Completado");
+                        potenciavalida = true;
+                    } else {
+                        System.out.println("ERROR.La potencia total no suma 30");
+                    }
+
+                } catch (NumberFormatException e1) {
+                    System.out.println("ERROR. Caracteres no validos.");
+                }
+            }
+        }
+
+        int iniciobatalla = aleatorio.nextInt(equipo1.length);
+        System.out.println("¡Empieza la batalla!");
+        System.out.println("La batalla inicia con el Samurai " + (iniciobatalla + 1) + ".");
+
+        for (int i = 0; i < equipo1.length; i++) {
+            int indice = (iniciobatalla + i) % equipo1.length;
+            System.out.print("Samurai " + (indice + 1) + ". ");
+
+            if (equipo1[indice] > equipo2[indice]) {
+                System.out.println("Gana Equipo 1. " + equipo1[indice] + " vs " + equipo2[indice]);
+                equipo2[indice] = 0;
+            }else if (equipo1[indice] < equipo2[indice]) {
+                System.out.println("Gana Equipo 2. " + equipo1[indice] + " vs " + equipo2[indice]);
+                equipo1[indice] = 0;
+            } else {
+                System.out.println("Empate. Ambos samuráis mueren. " + equipo1[indice] + " vs " + equipo2[indice]);
+                equipo1[indice] = 0;
+                equipo2[indice] = 0;
+            }
+
+            int bajasEquipo1 = 0;
+            int bajasEquipo2 = 0;
+            for (int j = 0; j < equipo1.length; j++) {
+                if (equipo1[j] == 0) bajasEquipo1++;
+                if (equipo2[j] == 0) bajasEquipo2++;
+            }
+
+            if (bajasEquipo1 >= 4) {
+                System.out.println("¡Equipo 2 GANA! Equipo 1 ha tenido 4 bajas.");
+                return;
+            } else if (bajasEquipo2 >= 4) {
+                System.out.println("¡Equipo 1 GANA! Equipo 2 ha tenido 4 bajas.");
+                return;
+            }
+        }
+
+    }
 }
 
 
