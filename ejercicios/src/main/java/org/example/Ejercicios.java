@@ -1494,6 +1494,81 @@ public class Ejercicios {
         }
 
     }
+     public void ruleta (){
+        Scanner entrada = new Scanner(System.in);
+        Random aleatorio = new Random();
+
+        String colores [] = {"rojo", "negro"};
+
+        Integer numeros [] = new Integer[37];
+
+        for (int i = 0; i < numeros.length ; i++) {
+            numeros[i] = i;
+        }
+
+        String pares[] = {"par","impar"};
+
+        System.out.println("Numero 0-36:");
+        int numero = entrada.nextInt();
+
+        boolean numero_existe= Arrays.asList(numeros).contains(numero);
+        String color="";
+        String par ="";
+
+        if (!numero_existe){
+            System.out.println("ERROR. El numero no es valido");
+            return;
+        }else {
+            if (numero !=0){
+                System.out.println("Color: ");
+                color = entrada.next();
+
+                boolean color_existe= Arrays.asList(colores).contains(color);
+
+                if (!color_existe){
+                    System.out.println("ERROR.El color no es valido");
+                    return;
+                }else {
+                    System.out.println("Introduce la opcion par o impar:");
+                    par = entrada.next();
+                    boolean par_existe = Arrays.asList(pares).contains(par);
+
+                    if (!par_existe){
+                        System.out.println("ERROR. La opcion ar/imar no es valido");
+                        return;
+                    }
+                }
+            }
+
+        }
+
+        int numero_sorteo = numeros[ aleatorio.nextInt(37)];
+        String color_sorteo = colores[aleatorio.nextInt(2)];
+        String pares_sorteo;
+
+       if (numero_sorteo%2==0){
+           pares_sorteo = "par";
+       }else {
+           pares_sorteo = "impar";
+       }
+
+        System.out.println("Ha tocado " + numero_sorteo + " "+ color_sorteo+ " "+ pares_sorteo);
+
+
+       if (numero!=0 && numero_sorteo==numero && color_sorteo.equals(color) && pares_sorteo.equals(par)){
+           System.out.println("HISTORIAA");
+       }else if (numero!=0 && color_sorteo.equals(color)){
+           System.out.println("Has acertado el color");
+       }else if (numero != 0 && pares_sorteo.equals(par)){
+           System.out.println("Has acertado la opcion par/impar");
+       } else if (numero==numero_sorteo && numero != 0) {
+           System.out.println("Has acertado el numero");
+       } else if (numero== 0 && numero_sorteo==0) {
+           System.out.println("HAS GANADO LOS DEMAS SON UNOS MUERTOS");
+       }else {
+           System.out.println("Has perdido");
+       }
+    }
 }
 
 
