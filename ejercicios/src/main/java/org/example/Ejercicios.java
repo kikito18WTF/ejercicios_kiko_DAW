@@ -1569,6 +1569,122 @@ public class Ejercicios {
            System.out.println("Has perdido");
        }
     }
+      public void ordenar (){
+        int numeros[] = {4,3,10,34,21};
+        System.out.println(Arrays.toString(numeros));
+
+        Arrays.sort(numeros); //menor a mayor
+        System.out.println(Arrays.toString(numeros));
+
+        //buscar
+
+        int num = 34;
+
+        int posicion = Arrays.binarySearch(numeros,num);
+
+        System.out.println(posicion);
+
+    }
+
+    public  void  eliminarduplicados1 (){
+
+        int original[] = {3,5,10,16,25,25};
+
+        int auxiliar[] = new int[original.length];
+
+
+        int tamanyo = 0;
+
+        for (int i = 0; i < original.length; i++) {
+            // origina[i] vs original [i+1]
+            if ( i!= original.length-1 && original[i]==original[i+1]){
+                System.out.println("Duplicado:" + original);
+            }else {
+                auxiliar[i] = original[i];
+                tamanyo++;
+            }
+        }
+        System.out.println(Arrays.toString(auxiliar));
+
+        //falta vector limpio
+        int limpio[] = new int[tamanyo];
+        int pos=0;
+
+        for (int i = 0; i < auxiliar.length; i++) {
+            if (auxiliar[i]!=0){
+                limpio[pos]=auxiliar[i];
+                pos++;
+            }
+        }
+
+        System.out.println(Arrays.toString(limpio));
+    }
+
+    public void eliminarduplicados2 (){
+        int original[] = {3,5,10,16,25,25};
+
+        int tamanyo = 0;
+
+        for (int i = 0; i < original.length; i++) {
+            // origina[i] vs original [i+1]
+            if ( i!= original.length-1 && original[i]==original[i+1]){
+                System.out.println("Duplicado:" + original);
+                original[i] = 0;
+            }else {
+                tamanyo++;
+            }
+        }
+
+
+        //falta vector limpio
+        int limpio[] = new int[tamanyo];
+        int pos=0;
+
+        for (int i = 0; i < original.length; i++) {
+            if (original[i]!=0){
+                limpio[pos]=original[i];
+                pos++;
+            }
+        }
+
+        System.out.println(Arrays.toString(limpio));
+
+
+    }
+
+    public void duplicado3 (){
+        Random aleatorio = new Random();
+        int original[] = {3,5,10,16,25,25};
+
+        boolean repetir = true;
+
+      while (repetir){
+          repetir = false;
+          for (int i = 0; i < original.length; i++) {
+              // origina[i] vs original [i+1]
+              if ( i!= original.length-1 && original[i]==original[i+1]){
+                  System.out.println("Duplicado:" + original[i]);
+                  original[i] = aleatorio.nextInt(49)+1;
+                  repetir = true;
+              }
+          }
+
+      }
+
+        //ordenar menor a mayor
+        Arrays.sort(original);
+
+        System.out.println(Arrays.toString(original));
+
+    }
+
+    public void modofacilduplicados (){
+        int original[] = {3,5,10,16,25,25};
+
+        int limpio[] = Arrays.stream(original).distinct().toArray();
+        System.out.println(Arrays.toString(limpio));
+
+    }
 }
 
 
