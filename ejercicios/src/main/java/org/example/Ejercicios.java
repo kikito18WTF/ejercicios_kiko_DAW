@@ -1685,6 +1685,119 @@ public class Ejercicios {
         System.out.println(Arrays.toString(limpio));
 
     }
+     public void primitiva (){
+
+        Scanner entrada = new Scanner(System.in);
+        Random aleatorio = new Random();
+
+
+        int[] boleto = new int[7];
+        int[] numesorteo = new int[6];
+        int numcomple;
+        int sorteoreint;
+
+
+        System.out.println("Introduce tu boleto:");
+        String introboleto = entrada.nextLine();
+
+
+        if (!introboleto.matches("^(\\d{1,2}-){5}\\d{1,2}/\\d{1}$")) {
+            System.out.println("Formato incorrecto. El boleto debe ser de 6 números seguidos de un reintegro.");
+            return;
+        }
+
+
+        String[] formatboleto = introboleto.split("[-/]");
+
+        for (int i = 0; i < 6; i++) {
+            int numero = Integer.parseInt(formatboleto[i]);
+            if (numero < 1 || numero > 49) {
+                System.out.println("ERROR: Los números deben estar entre 1 y 49.");
+                return;
+            }
+
+            for (int j = 0; j < i; j++) {
+                if (boleto[j] == numero) {
+                    System.out.println("ERROR: El número " + numero + " se repite.");
+                    return;
+                }
+            }
+
+            boleto[i] = numero;
+        }
+
+
+        int reintegro = Integer.parseInt(formatboleto[6]);
+        if (reintegro < 0 || reintegro > 9) {
+            System.out.println("ERROR: El reintegro debe ser un número entre 0 y 9.");
+            return;
+        }
+        boleto[6] = reintegro;
+
+
+        for (int i = 0; i < 6; i++) {
+            int num;
+            boolean errorrepe;
+            do {
+                num = aleatorio.nextInt(49) + 1;
+                errorrepe = false;
+
+                for (int j = 0; j < i; j++) {
+                    if (numesorteo[j] == num) {
+                        errorrepe = true;
+                        break;
+                    }
+                }
+            } while (errorrepe);
+
+            numesorteo[i] = num;
+        }
+
+
+        Arrays.sort(numesorteo);
+
+
+        numcomple = aleatorio.nextInt(49) + 1;
+        while (Arrays.asList(numesorteo).contains(numcomple) || Arrays.asList(boleto).contains(numcomple)) {
+            numcomple = aleatorio.nextInt(49) + 1;
+        }
+
+
+        sorteoreint = aleatorio.nextInt(10);
+
+
+        System.out.println("SORTEO:");
+        System.out.println( Arrays.toString(numesorteo));
+        System.out.println("Número complementario: " + numcomple);
+        System.out.println("Reintegro: " + sorteoreint);
+
+
+        int aciertos = 0;
+        for (int num : boleto) {
+            if (Arrays.binarySearch(numesorteo, num) >= 0) {
+                aciertos++;
+            }
+        }
+
+        System.out.println("RESULTADOS:");
+        if (aciertos == 6 && sorteoreint == boleto[6]) {
+            System.out.println("¡Categoría Especial! Has acertado los 6 números y el reintegro.");
+        } else if (aciertos == 6) {
+            System.out.println("¡Primera Categoría! Has acertado los 6 números.");
+        } else if (aciertos == 5 && Arrays.binarySearch(numesorteo, numcomple) >= 0) {
+            System.out.println("¡Segunda Categoría! Has acertado 5 números y el número complementario.");
+        } else if (aciertos == 5) {
+            System.out.println("¡Tercera Categoría! Has acertado 5 números.");
+        } else if (aciertos == 4) {
+            System.out.println("¡Cuarta Categoría! Has acertado 4 números.");
+        } else if (aciertos == 3) {
+            System.out.println("¡Quinta Categoría! Has acertado 3 números.");
+        } else if (sorteoreint == boleto[6]) {
+            System.out.println("1 acierto. Reintegro");
+        } else {
+            System.out.println("No premiado.");
+        }
+    }
 }
 
 
