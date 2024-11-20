@@ -1417,83 +1417,116 @@ public class Ejercicios {
 
     }
 
-    public void samurais () {
+   public void samurais () {
+
         Scanner entrada = new Scanner(System.in);
         Random aleatorio = new Random();
-
         int[] equipo1 = new int[7];
         int[] equipo2 = new int[7];
-        int potenciatotal;
-        for (int equipo = 1; equipo <= 2; equipo++) {
-            boolean potenciavalida = false;
-            while (!potenciavalida) {
-                potenciatotal = 0;
-                try {
-                    int[] equipoActual = (equipo == 1) ? equipo1 : equipo2;
-                    System.out.println("Equipo" + equipo + ". Introduce potencia de los samurais:");
-                    String intropoten = entrada.nextLine();
-                    String[] valores = intropoten.split(" ");
+        int  eqp1muertos= 0;
+        int eqp2muertos = 0;
 
-                    if (valores.length != equipoActual.length) {
-                        System.out.println("ERROR. Tienes que introducir 7 valores");
-                        continue;
-                    }
+        boolean error = false;
+        int totalpoten;
+        while (!error) {
+            totalpoten = 0;
+            try {
+                System.out.println("Equipo 1. Introduce potencia de los samurais:");
+                String intropoten = entrada.nextLine();
+                String[] valores = intropoten.split(" ");
 
-                    for (int i = 0; i < equipoActual.length; i++) {
-                        equipoActual[i] = Integer.parseInt(valores[i]);
-                        potenciatotal += equipoActual[i];
-                    }
-
-                    if (potenciatotal == 30) {
-                        System.out.println("Equipo" + equipo+ " Completado");
-                        potenciavalida = true;
-                    } else {
-                        System.out.println("ERROR.La potencia total no suma 30");
-                    }
-
-                } catch (NumberFormatException e1) {
-                    System.out.println("ERROR. Caracteres no validos.");
+                if (valores.length != equipo1.length) {
+                    System.out.println("ERROR. Tienes que introducir 7 valores.");
+                    continue;
                 }
+
+
+                for (int i = 0; i < equipo1.length; i++) {
+                    equipo1[i] = Integer.parseInt(valores[i]);
+                    totalpoten += equipo1[i];
+                }
+
+                if (totalpoten== 30) {
+                    System.out.println("Equipo 1 Completado.");
+                    error = true;
+                } else {
+                    System.out.println("ERROR. La potencia total no suma 30.");
+                }
+
+            } catch (NumberFormatException e1) {
+                System.out.println("ERROR. Caracteres no válidos.");
             }
         }
 
-        int iniciobatalla = aleatorio.nextInt(equipo1.length);
+
+        error = false;
+        while (!error) {
+            totalpoten = 0;
+            try {
+                System.out.println("Equipo 2. Introduce potencia de los samurais:");
+                String intropoten = entrada.nextLine();
+                String[] valores = intropoten.split(" ");
+
+                if (valores.length != equipo2.length) {
+                    System.out.println("ERROR. Tienes que introducir 7 valores.");
+                    continue;
+                }
+
+                for (int i = 0; i < equipo2.length; i++) {
+                    equipo2[i] = Integer.parseInt(valores[i]);
+                    totalpoten += equipo2[i];
+                }
+
+                if (totalpoten == 30) {
+                    System.out.println("Equipo 2 Completado.");
+                    error= true;
+                } else {
+                    System.out.println("ERROR. La potencia total no suma 30.");
+                }
+
+            } catch (NumberFormatException e1) {
+                System.out.println("ERROR. Caracteres no válidos.");
+            }
+        }
+
+
+        int batalla = aleatorio.nextInt(equipo1.length);
         System.out.println("¡Empieza la batalla!");
-        System.out.println("La batalla inicia con el Samurai " + (iniciobatalla + 1) + ".");
+        System.out.println("La batalla inicia con el Samurai " + (batalla + 1) + ".\n");
+
 
         for (int i = 0; i < equipo1.length; i++) {
-            int indice = (iniciobatalla + i) % equipo1.length;
+            int indice = (batalla + i) % equipo1.length;
             System.out.print("Samurai " + (indice + 1) + ". ");
 
             if (equipo1[indice] > equipo2[indice]) {
                 System.out.println("Gana Equipo 1. " + equipo1[indice] + " vs " + equipo2[indice]);
                 equipo2[indice] = 0;
-            }else if (equipo1[indice] < equipo2[indice]) {
+                eqp2muertos++;
+            } else if (equipo1[indice] < equipo2[indice]) {
                 System.out.println("Gana Equipo 2. " + equipo1[indice] + " vs " + equipo2[indice]);
                 equipo1[indice] = 0;
+                eqp1muertos++;
             } else {
                 System.out.println("Empate. Ambos samuráis mueren. " + equipo1[indice] + " vs " + equipo2[indice]);
                 equipo1[indice] = 0;
                 equipo2[indice] = 0;
+                eqp1muertos++;
+                eqp2muertos++;
+
             }
 
-            int bajasEquipo1 = 0;
-            int bajasEquipo2 = 0;
-            for (int j = 0; j < equipo1.length; j++) {
-                if (equipo1[j] == 0) bajasEquipo1++;
-                if (equipo2[j] == 0) bajasEquipo2++;
-            }
-
-            if (bajasEquipo1 >= 4) {
-                System.out.println("¡Equipo 2 GANA! Equipo 1 ha tenido 4 bajas.");
-                return;
-            } else if (bajasEquipo2 >= 4) {
-                System.out.println("¡Equipo 1 GANA! Equipo 2 ha tenido 4 bajas.");
-                return;
-            }
         }
 
+        if (eqp1muertos > eqp2muertos) {
+            System.out.println("¡Equipo 2 GANA! Equipo 1 ha tenido 4 o mas bajas.");
+            } else if (eqp2muertos > eqp1muertos) {
+            System.out.println("¡Equipo 1 GANA! Equipo 2 ha tenido 4 o mas bajas.");
+            }else{
+            System.out.println("¡EMPATE! Ambos equipos han tenido el mismo número de bajas.");
+            }
     }
+
      public void ruleta (){
         Scanner entrada = new Scanner(System.in);
         Random aleatorio = new Random();
