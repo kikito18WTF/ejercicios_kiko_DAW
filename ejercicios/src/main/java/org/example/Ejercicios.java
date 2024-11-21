@@ -1831,6 +1831,159 @@ public class Ejercicios {
             System.out.println("No premiado.");
         }
     }
+     public void modofacilduplicados (){
+        int original[] = {3,5,10,16,25,25};
+
+        int limpio[] = Arrays.stream(original).distinct().toArray();
+        System.out.println(Arrays.toString(limpio));
+
+    }
+
+    public void triangulo () {
+        Scanner entrada = new Scanner(System.in);
+
+        int altura;
+
+        System.out.println("Altura:");
+        altura= entrada.nextInt();
+
+        for (int i= 1; i<=altura; i++){
+            for (int j = 1; j <=i ; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
+    }
+
+    public void tablas (){
+
+        int num = 10;
+
+        for (int i = 1; i <= num ; i++) {
+            System.out.println("Tabla del " + i);
+            for (int j = 1; j <=num ; j++) {
+                System.out.println(i + "x" + j + "=" + i*j );
+            }
+        }
+    }
+
+    public void buscarmatrices (){
+        Random aleatorio = new Random(); //para crear una matriz random
+
+        int matriz [][] = new int[2][4];
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+
+                matriz[i][j] = aleatorio.nextInt(10);
+            }
+        }
+
+        for (int[] filas : matriz){
+            for (int columnas : filas) {
+                System.out.println(columnas + " ");
+            }
+            System.out.println("\n");
+        }
+
+        final int numero = 8; //buscar este numero
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+
+                if (matriz[i][j]==numero){
+                    System.out.println("AMAI existe el 8");
+                    return; //se acabo
+                }
+
+            }
+        }
+
+        System.out.println("Amai, no existe");
+    }
+
+    public void matrices1 () {
+        Scanner entrada = new Scanner(System.in);
+
+        int matriz [][] = new int[3][3];
+        System.out.println("Introduce una matriz:");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j <matriz[i].length ; j++) {
+                matriz[i][j] = entrada.nextInt();
+            }
+        }
+
+        System.out.println("La matriz ha quedado asi: ");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        int numbuscar;
+        System.out.println("Numero a buscar:");
+        numbuscar = entrada.nextInt();
+        System.out.println("Salida:");
+        for (int i = 0; i < matriz.length ; i++) {
+            for (int j = 0; j <matriz[i].length ; j++) {
+
+                if (matriz[i][j]==numbuscar){
+                    System.out.println("El numero"+numbuscar+"se encuentra en la posicion"+ i + "," +  j);
+                }
+            }
+        }
+
+        System.out.println("No existe");
+    }
+
+    public  void matrices2 (){
+
+        Random aleatorio = new Random();
+
+        int filas = aleatorio.nextInt(5)+1;
+        int columnas = aleatorio.nextInt(5)+1;
+
+        int matriz[][] = new int[filas][columnas];
+
+        for (int i = 0; i < matriz.length ; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                matriz[i][j] = aleatorio.nextInt(50)+1;
+            }
+        }
+
+        System.out.println("Matriz: ");
+
+        for (int [] fila : matriz){
+            for(int columna : fila){
+                System.out.println(columna + " ");
+            }
+            System.out.println("\n");
+        }
+
+        int suma = 0;
+        System.out.println("suma de filas:");
+
+        for (int i = 0; i < matriz.length ; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                suma+=matriz[i][j];
+            }
+            System.out.println("fila " + (i + 1) + " " + suma);
+             suma=0;
+        }
+
+        System.out.println("suma de columnas:");
+        for (int i = 0; i < matriz[0].length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+
+                suma+=matriz[j][i];
+            }
+            System.out.println("columna " + (i + 1) + " " + suma);
+            suma=0;
+        }
+
+    }
 }
+
 
 
