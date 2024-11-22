@@ -1983,6 +1983,250 @@ public class Ejercicios {
         }
 
     }
+    public void rellenarmatrices() {
+
+        int vector[] = {3, 5, 4, 1};
+        int matriz[][] = new int[2][4];
+
+        for (int i = 0; i < matriz[0].length; i++) {
+            matriz[0][i] = vector[i];
+        }
+
+        for (int[] filas : matriz) {
+            for (int columnas : filas) {
+                System.out.print(columnas + " ");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public void compararvaloreshorizontalmente() {
+
+        int vector[] = {1, 4, 5, 8};
+        System.out.println(Arrays.toString(vector));
+
+        int matriz[][] = {{3, 2, 5, 4}, {1, 4, 5, 8}, {9, 4, 3, 5}};
+
+        for (int[] filas : matriz) {
+            for (int columnas : filas) {
+                System.out.print(columnas + " ");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("Voy a comprobar la fila con índice 1");
+        for (int i = 0; i < matriz[1].length; i++) {
+            if (matriz[1][i] != vector[i]) {
+                System.out.println("No son iguales.");
+                return;
+            }
+        }
+
+        System.out.println("Son iguales.");
+
+    }
+
+    public void compararvaloresverticalmente() {
+        int vector[] = {4, 8, 5};
+        System.out.println(Arrays.toString(vector));
+
+        int matriz[][] = {{3, 2, 5, 4}, {1, 4, 5, 8}, {9, 4, 3, 5}};
+
+        for (int[] filas : matriz) {
+            for (int columnas : filas) {
+                System.out.print(columnas + " ");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("Voy a comprobar la columna con índice 3");
+        for (int i = 0; i < matriz.length; i++) {
+            if (matriz[i][3] != vector[i]) {
+                System.out.println("No son iguales.");
+                return;
+            }
+        }
+
+        System.out.println("Son iguales.");
+
+    }
+
+    public void matricescalificaciones() {
+        Scanner entrada = new Scanner(System.in);
+
+        //  Preguntar cuántos estudiantes y cuántas asignaturas
+        System.out.print("¿Cuántos estudiantes hay? ");
+        int numEstudiantes = entrada.nextInt();
+
+        System.out.print("¿Cuántas asignaturas hay? ");
+        int numAsignaturas = entrada.nextInt();
+
+        //  Crear la matriz con el tamaño adecuado
+        // La matriz tendrá 1 fila adicional para los encabezados (nombres de asignaturas y nombres de estudiantes)
+        String[][] matriz = new String[numEstudiantes + 1][numAsignaturas + 1];
+
+        //  Rellenar los nombres de los estudiantes en la primera columna y los nombres de las asignaturas en la primera fila
+        entrada.nextLine();  // Limpiar el buffer de entrada
+        System.out.println("Introduce los nombres de las asignaturas:");
+        for (int i = 1; i <= numAsignaturas; i++) {
+            System.out.print("Asignatura " + i + ": ");
+            matriz[0][i] = entrada.nextLine();
+        }
+
+        System.out.println("Introduce los nombres de los estudiantes:");
+        for (int i = 1; i <= numEstudiantes; i++) {
+            System.out.print("Estudiante " + i + ": ");
+            matriz[i][0] = entrada.nextLine();
+        }
+
+        //  Pedir las notas por alumno
+        for (int i = 1; i <= numEstudiantes; i++) {
+            System.out.println("Introduce las notas de " + matriz[i][0] + ":");
+            for (int j = 1; j <= numAsignaturas; j++) {
+                System.out.print(matriz[0][j] + ": ");
+                matriz[i][j] = entrada.nextLine();
+            }
+        }
+
+        // Mostrar la matriz completa
+        System.out.println("\nMatriz completa con las notas:");
+        for (int i = 0; i <= numEstudiantes; i++) {
+            for (int j = 0; j <= numAsignaturas; j++) {
+                System.out.print(matriz[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+
+        // Cálculos
+        // Nota media de cada alumno
+
+        System.out.println("\nNota media de cada alumno:");
+        for (int i = 1; i <= numEstudiantes; i++) {
+            int sumaNotas = 0;
+            for (int j = 1; j <= numAsignaturas; j++) {
+                sumaNotas += Integer.parseInt(matriz[i][j]);
+            }
+            int mediaAlumno = sumaNotas / numAsignaturas;
+            System.out.println(matriz[i][0] + ": " + mediaAlumno);
+        }
+
+        // Nota media por asignatura
+        System.out.println("\nNota media por asignatura:");
+        for (int j = 1; j <= numAsignaturas; j++) {
+            int sumaNotas = 0;
+            for (int i = 1; i <= numEstudiantes; i++) {
+                sumaNotas += Integer.parseInt(matriz[i][j]);
+            }
+            int mediaAsignatura = sumaNotas / numEstudiantes;
+            System.out.println(matriz[0][j] + ": " + mediaAsignatura);
+        }
+
+
+    }
+
+
+    public void mayor() {
+        Random aleatorio = new Random();
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Introduce el tamaño de la matriz A:");
+        int filasa = entrada.nextInt();
+        int columnasa = entrada.nextInt();
+        System.out.println("Introduce el tamaño de la matriz B:");
+        int filasb = entrada.nextInt();
+        int columnasb = entrada.nextInt();
+
+        int a[][] = new int[filasa][columnasa];
+        int b[][] = new int[filasb][columnasb];
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+
+                a[i][j] = aleatorio.nextInt(20) + 1;
+            }
+        }
+
+        System.out.println("Matriz A");
+        for (int[] filas : a) {
+            for (int columnas : filas) {
+                System.out.print(columnas + " ");
+            }
+        }
+        System.out.print("\n");
+
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0; j < b[i].length; j++) {
+
+                b[i][j] = aleatorio.nextInt(20) + 1;
+            }
+        }
+
+        System.out.println("Matriz B");
+        for (int[] filas : b) {
+            for (int columnas : filas) {
+                System.out.print(columnas + " ");
+            }
+            System.out.print("\n");
+
+        }
+
+        if (filasa != filasb || columnasa != columnasb) {
+            System.out.println("ERROR, las matrices no son iguales");
+            return;
+        }
+
+        int m[][] = new int[a.length][a[0].length];
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+
+                if (a[i][j] > b[i][j]) {
+                    m[i][j] = a[i][j];
+                } else if (a[i][j] > b[i][j]) {
+                    m[i][j] = b[i][j];
+                } else {
+                    m[i][j] = 0;
+                }
+            }
+        }
+        System.out.println("Matriz M");
+        for (int[] filas : m) {
+            for (int columnas : filas) {
+                System.out.print(columnas + " ");
+            }
+            System.out.print("\n");
+
+        }
+    }
+
+    public void vectores_2 (){
+
+        Scanner entrada = new Scanner(System.in);
+
+        String matriz[][] = new String[10][10];
+
+        for (int i = 0; i <matriz.length ; i++) {
+
+            System.out.println("Ingrese el vector: ");
+            String valor_fila[] = entrada.next().split("");
+
+            for (int j = 0; j < matriz[i].length; j++) {
+
+                matriz[i][j] = valor_fila[j];
+
+            }
+        }
+
+                for (String[] filas : matriz){
+
+                for (String columnas : filas){
+                    System.out.println(columnas + " ");
+                }
+                System.out.println("\n");
+            }
+        }
+
 }
 
 
