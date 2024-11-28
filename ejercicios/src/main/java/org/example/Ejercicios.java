@@ -2226,6 +2226,78 @@ public class Ejercicios {
                 System.out.println("\n");
             }
         }
+    public void sopadeletras () {
+
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.print("Introduce el número de filas: ");
+        int M = entrada.nextInt();
+        System.out.print("Introduce el número de columnas: ");
+        int N = entrada.nextInt();
+
+        String[][] matriz = new String[M][N];
+
+        entrada.nextLine();
+        for (int i = 0; i < M; i++) {
+            System.out.println("Introduce las letras de  la fila " + (i + 1) + ":");
+            String fila = entrada.nextLine().toLowerCase();
+
+            if (fila.length() != N) {
+                System.out.println("Error: La fila debe tener " + N + " caracteres.");
+                return;
+            }
+
+            for (int j = 0; j < N; j++) {
+                matriz[i][j] = String.valueOf(fila.charAt(j));
+            }
+        }
+
+        System.out.println("\n");
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.print("\nIntroduce la palabra a buscar: ");
+        String palabra = entrada.nextLine().toLowerCase();
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+
+                if (j + palabra.length() <= N) {
+                    boolean error = true;
+                    for (int k = 0; k < palabra.length(); k++) {
+                        if (!matriz[i][j + k].equals(String.valueOf(palabra.charAt(k)))) {
+                            error = false;
+                            break;
+                        }
+                    }
+                    if (error) {
+                        System.out.println("Encontrada. En la posición " + (i + 1) + " " + (j + 1));
+                        return;
+                    }
+                }
+
+                if (i + palabra.length() <= M) {
+                    boolean error = true;
+                    for (int k = 0; k < palabra.length(); k++) {
+                        if (!matriz[i + k][j].equals(String.valueOf(palabra.charAt(k)))) {
+                            error = false;
+                            break;
+                        }
+                    }
+                    if (error) {
+                        System.out.println("Encontrada. En la posición " + (i + 1) + " " + (j + 1));
+                        return;
+                    }
+                }
+            }
+        }
+
+        System.out.println("Palabra no encontrada.");
+    }
 
 }
 
