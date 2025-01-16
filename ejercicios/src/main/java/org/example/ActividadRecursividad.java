@@ -3,7 +3,7 @@ package org.example;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ActividadesConPatri {
+public class ActividadRecursividad {
 
     static   Scanner entrada = new Scanner(System.in);
     static char palabra_vector[];
@@ -119,13 +119,28 @@ public class ActividadesConPatri {
 
                 break;
             case 7:
-                suma();
-
+                System.out.println("Introduce tu número: ");
+                int num3 = entrada.nextInt();
+                if (num3<0){
+                    System.out.println("Introduce un número positivo :");
+                } else {
+                    int adios = suma(num3);
+                    for (int i = 1; i <= num3; i++) {
+                        System.out.print(i);
+                        if (i==num3) {
+                            System.out.print(" = ");
+                        } else {
+                            System.out.print(" + ");
+                        }
+                    }
+                    System.out.println(adios);
+                }
+                salir();
                 break;
             case 0:
                 return;
             default:
-                System.out.println("Opción no válida. Por favor, ingrese una opción válida.");
+                System.out.println("Opción no válida");
         }
     }
 
@@ -229,8 +244,13 @@ public class ActividadesConPatri {
 
          return true;
     }
-    public static void suma(){
+    public static int suma(int numero){
 
+        if (numero > 1){
+            return numero + suma(numero-1);
+        } else {
+            return numero;
+        }
     }
-}
 
+}
